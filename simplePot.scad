@@ -57,7 +57,7 @@ hookInnerDiameter=7.5;
 rotate(180,[1,0,0])	//printable
 pot();
 
-%translate([0,0,h1+h2+50]) pot(); //second pot for demo
+//%translate([0,0,h1+h2+50]) pot(); //second pot for demo
 
 module pot(){
 	translate([0,0,h1-wallThickness])
@@ -79,6 +79,7 @@ module pot(){
 module potHull(r1=r1,r2=r2,t=wallThickness){
 	difference(){
 		cylinder(r1=r1+t,r2=r2+t,h=h);
-		cylinder(r1=r1,r2=r2,h=h);
+		translate([0,0,-0.01])
+		cylinder(r1=r1,r2=r2,h=h+0.02);
 	}
 }

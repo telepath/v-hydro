@@ -54,7 +54,8 @@ module cleanVHooks(d=innerDiameter, t=wallThickness, hi=hookInnerDiameter){
 	intersection(){
 		difference(){
 			vHooks(d=d, t=t,hi=hi);
-			cylinder(r=d/2,h=h);
+			translate([0,0,-1])
+				cylinder(r=d/2,h=h+2);
 		}
 		cylinder(r=d/2+t,h=h);
 	}
@@ -75,7 +76,8 @@ module cleanHHooks(d=innerDiameter, d2=cleanDiameter, t=wallThickness, hi=hookIn
 	h=t*2;
 	difference(){
 		hHooks(d=d, t=t,hi=hi);
-		cylinder(r=d2/2,h=h);
+		translate([0,0,-1])
+			cylinder(r=d2/2,h=h+2);
 	}
 }
 
@@ -97,6 +99,7 @@ module basehook(hi=hookInnerDiameter,t=wallThickness,b=borderThickness){
 			cylinder(r=(hi/2+b),h=t);
 			translate([-(hi/2+b),0,0]) cube([hi+b*2,(hi/2+b),t]);
 		}
-		cylinder(r=hi/2,h=t);
+		translate([0,0,-1])
+			cylinder(r=hi/2,h=t+2);
 	}
 }
