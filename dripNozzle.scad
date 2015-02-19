@@ -2,7 +2,7 @@
 Project:			3D printed hydroponics system
 Repositiry:		https://github.com/telepath/v-hydro
 File name:		dripNozzle.scad
-Requirements:	nozzle.scad, https://github.com/syvwlch/Thingiverse-Projects/tree/master/Threaded%20Library
+Requirements:	nozzle.scad, loop.scad, https://github.com/syvwlch/Thingiverse-Projects/tree/master/Threaded%20Library
 Author:			Benjamin Richter
 Email:			3dp@itrichter.de
 License:			GPLv3 https://www.gnu.org/licenses/gpl-3.0.txt
@@ -40,7 +40,7 @@ Modules:
 
 include <Screw_Library/Thread_Library.scad>
 include <lib/nozzle.scad>
-include <lib/hook.scad>
+include <lib/loop.scad>
 
 $fn=32;
 $fs=0.75;$fa=5;

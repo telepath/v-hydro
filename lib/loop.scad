@@ -1,7 +1,7 @@
 /*
 Project:			3D printed hydroponics system
 Repositiry:		https://github.com/telepath/v-hydro
-File name:		hook.scad
+File name:		loop.scad
 Requirements:	none
 Author:			Benjamin Richter
 Email:			3dp@itrichter.de
@@ -11,7 +11,7 @@ Release:			2015-2-18
 
 *Changelog*
 1.1 Initial Release
-- added horizontal hooks
+- added horizontal loops
 
 1.0 Initial Release
 
