@@ -65,15 +65,15 @@ module pot(){
 
 	potHull(r1=r2,r2=r1,t=wallThickness,h=h1);
 
-	translate([0,0,-h2])
+	translate([0,0,-h2+0.01])
 		potHull(r1=r3,r2=r2,t=wallThickness,h=h2);
 
-	rotate(180, [1,0,0])
-		cleanVHooks(d=r2*2, t=wallThickness, hi=hookInnerDiameter);
+	translate([0,0,0.01])
+		rotate(180, [1,0,0])
+			cleanVHooks(d=r2*2, t=wallThickness, hi=hookInnerDiameter);
 
-	translate([0,0,-h2-nozzleLength]) 
-//		rotate(180,[1,0,0])
-			nozzle(l=nozzleLength,do=nozzleOuterDiameter,di=nozzleInnerDiameter,mw=minWallThickness,n1=nozzleThinning,n2=bNozzleThinning);
+	translate([0,0,-h2-nozzleLength+0.01]) 
+		nozzle(l=nozzleLength,do=nozzleOuterDiameter,di=nozzleInnerDiameter,mw=minWallThickness,n1=nozzleThinning,n2=bNozzleThinning);
 }
 
 module potHull(r1=r1,r2=r2,t=wallThickness){
