@@ -1,5 +1,6 @@
 /*
 Project:			3D printed hydroponics system
+Repositiry:		https://github.com/telepath/v-hydro
 File name:		hook.scad
 Requirements:	none
 Author:			Benjamin Richter

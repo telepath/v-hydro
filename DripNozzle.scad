@@ -1,5 +1,6 @@
 /*
 Project:			3D printed hydroponics system
+Repositiry:		https://github.com/telepath/v-hydro
 File name:		dripNozzle.scad
 Requirements:	nozzle.scad, https://github.com/syvwlch/Thingiverse-Projects/tree/master/Threaded%20Library
 Author:			Benjamin Richter
