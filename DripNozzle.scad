@@ -1,7 +1,7 @@
 /*
 Project:			3D printed hydroponics system
 File name:		dripNozzle.scad
-Requirements:	nozzle.scad, http://www.thingiverse.com/thing:8793
+Requirements:	nozzle.scad, https://github.com/syvwlch/Thingiverse-Projects/tree/master/Threaded%20Library
 Author:			Benjamin Richter
 Email:			3dp@itrichter.de
 License:			GPLv3 https://www.gnu.org/licenses/gpl-3.0.txt
