@@ -32,9 +32,9 @@ minWallThickness = 0.8;		//minimum thickness of nozzle end
 bottomNozzleThinning = 1;	//amount to taper bottom nozzle inwards
 topNozzleThinning = 1;		//amount to taper top nozzle inwards
 
-$fn=12;
+/* $fn=12; */
 
-
+/* nozzle(l=16,do=8,di=5,n1=0.75,n2=-1); */
 module nozzle(l=length,do=outerDiameter,di=innerDiameter,mw=minWallThickness,n1=bottomNozzleThinning,n2=topNozzleThinning){
 
 wr = do/10;
@@ -55,7 +55,7 @@ nr=floor((l*0.6)/(wr*4));
 			//ribs
 			if (nr > 0) for (i = [0:nr-1]){
 				translate([0,0,l/5+i*wr*4])
-					rib(l=wr*3,do=do,di=di,wr=wr);
+					#rib(l=wr*3,do=do,di=di,wr=wr);
 			}
 		}
 		translate([0,0,-1])
@@ -91,9 +91,10 @@ module rib(l=length/5,do=outerDiameter,di=innerDiameter,wr=0){
 }
 
 module torus(ra,rb,){
+	echo(ra,rb);
 	rotate_extrude(convexity = 10)
-		translate([ra, 0, 0])
-			circle(r = rb,$fn=8);
+		translate([max(ra,rb), 0, 0])
+			circle(r = min(ra,rb),$fn=8);
 }
 
 //nozzle();
