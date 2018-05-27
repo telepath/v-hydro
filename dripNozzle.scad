@@ -38,7 +38,7 @@ Modules:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-include <Screw_Library/Thread_Library.scad>
+include <threaded-library/Thread_Library.scad>
 include <lib/nozzle.scad>
 include <lib/loop.scad>
 
@@ -64,7 +64,7 @@ bottomNozzleThinning = -0.5;	//amount to taper nozzle bottom inwards (outwards, 
 // Thread parameters - for standard plastic bottles
 
 TotalHeight = 12;
-ThreadOuterDiameter=27.5; 
+ThreadOuterDiameter=27.5;
 ThreadPitch=2.7;
 ToothHeight=1.5;
 ProfileRatio=0.4;
@@ -123,7 +123,7 @@ module cone_cap(){
 	}
 
 	//Nozzle
-	translate([0,0,LidHeight+SlopeHeight+length]) 
+	translate([0,0,LidHeight+SlopeHeight+length])
 		rotate(180,[1,0,0])
 			nozzle(l=length,do=NozzleOuterDiameter,di=NozzleInnerDiameter,mw=minWallThickness,n1=nozzleThinning,n2=bottomNozzleThinning);
 }
@@ -139,7 +139,7 @@ module thread(){
 			pitchRadius=ThreadOuterDiameter/2,
 			threadHeightToPitch=ToothHeight/ThreadPitch,
 			profileRatio=ProfileRatio,
-			threadAngle=ThreadAngle, 
+			threadAngle=ThreadAngle,
 			clearance=0.1,
 			backlash=0.1
 		);

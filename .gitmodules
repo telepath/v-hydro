@@ -1,0 +1,3 @@
+[submodule "threaded-library"]
+	path = threaded-library
+	url = git@github.com:telepath/threaded-library.git
