@@ -55,7 +55,7 @@ nr=floor((l*0.6)/(wr*4));
 			//ribs
 			if (nr > 0) for (i = [0:nr-1]){
 				translate([0,0,l/5+i*wr*4])
-					#rib(l=wr*3,do=do,di=di,wr=wr);
+					rib(l=wr*3,do=do,di=di,wr=wr);
 			}
 		}
 		translate([0,0,-1])
@@ -91,7 +91,7 @@ module rib(l=length/5,do=outerDiameter,di=innerDiameter,wr=0){
 }
 
 module torus(ra,rb,){
-	echo(ra,rb);
+	/* echo(ra,rb); */
 	rotate_extrude(convexity = 10)
 		translate([max(ra,rb), 0, 0])
 			circle(r = min(ra,rb),$fn=8);
