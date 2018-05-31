@@ -60,11 +60,11 @@ module airLiftNozzle(l=length){
 
 			//connection support
 			translate([0,0,l*0.9])
-				sphere(r=outerDiameter*0.75);
+				sphere(d=outerDiameter*1.5);
 		}
 
 		//side nozzle hole
-		translate([0,-l*0.1,l*0.8])	
+		translate([0,-l*0.1,l*0.8])
 			rotate(45,[1,0,0])
 				translate([0,0,l*1.3])
 					rotate(180,[1,0,0])
@@ -76,7 +76,7 @@ module airLiftNozzle(l=length){
 	}
 
 	//side nozzle
-	translate([0,-l*0.1,l*0.8])	
+	translate([0,-l*0.1,l*0.8])
 		rotate(45,[1,0,0])
 			translate([0,0,l*1.3])
 				rotate(180,[1,0,0])
@@ -98,11 +98,11 @@ module tConnector(l=length){
 
 					//connection support
 					translate([0,0,l])
-						sphere(r=outerDiameter*0.75);
+						sphere(d=outerDiameter*1.25);
 				}
 
 				//side nozzle hole
-				translate([0,-1,l])	
+				translate([0,-1,l])
 					rotate(90,[1,0,0])
 						translate([0,0,l])
 							rotate(180,[1,0,0])
@@ -110,7 +110,7 @@ module tConnector(l=length){
 			}
 
 			//side nozzle
-			translate([0,0,l])	
+			translate([0,0,l])
 				rotate(90,[1,0,0])
 					translate([0,0,l])
 						rotate(180,[1,0,0])
@@ -123,57 +123,30 @@ module tConnector(l=length){
 	}
 }
 
-module xConnector(l=length){
+module nConnector(l=length, n=number_of_outlets){
 	difference() {
 		union() {
-			difference(){
-				union(){
-					//bottom nozzle
-					nozzle(l=l,n1=nozzleThinning,n2=0);
-					//top nozzle
-					translate([0,0,l*2])
-						rotate(180,[1,0,0])
-							nozzle(l=l,n1=nozzleThinning,n2=0);
-
-					//connection support
-					translate([0,0,l])
-						sphere(r=outerDiameter*0.75);
+			sphere(d=outerDiameter*1.25);
+			for (i=[1:n]) {
+				rotate([360/n*i,0,0]) {
+					translate([0, 0, -l]) {
+						nozzle(l=l,n1=nozzleThinning,n2=0);
+					}
 				}
-
-				//side nozzle hole 1
-				translate([0,-1,l])	
-					rotate(90,[1,0,0])
-						translate([0,0,l])
-							rotate(180,[1,0,0])
-								nozzle(l=l,di=0,nr=0,n1=nozzleThinning,n2=1);
-
-				//side nozzle hole 2
-				translate([0,1,l])	
-					rotate(-90,[1,0,0])
-						translate([0,0,l])
-							rotate(180,[1,0,0])
-								nozzle(l=l,di=0,nr=0,n1=nozzleThinning,n2=1);
 			}
-
-			//side nozzle
-			translate([0,0,l])	
-				rotate(90,[1,0,0])
-					translate([0,0,l])
-						rotate(180,[1,0,0])
-							nozzle(l=l,n1=nozzleThinning,n2=0);
-
-			//side nozzle
-			translate([0,0,l])	
-				rotate(-90,[1,0,0])
-					translate([0,0,l])
-						rotate(180,[1,0,0])
-							nozzle(l=l,n1=nozzleThinning,n2=0);
 		}
-
-		//clear inner path
-		translate([0,0,l/2])
-			cylinder(r=innerDiameter/2,h=l);
+		for (i=[1:n]) {
+			rotate([360/n*i,180,0]) {
+				cylinder(d=innerDiameter, h=length);
+			}
+		}
+		rotate([0, -90, 0]) {
+		}
 	}
+}
+
+module xConnector(l=length){
+	nConnector(l=l,n=4);
 }
 
 module printable(){
@@ -204,3 +177,5 @@ printable()
 /* t-connector */
 printable()
 	tConnector();
+
+/* nConnector(l=length,n=7); */
