@@ -36,7 +36,7 @@ outerDiameter = 5.5;		//outer diameter of the connector/nozzle (plus nozzle ridg
 innerDiameter = 3.5;		//innter diameter of the connector/nozzle
 minWallThickness = 0.8;	//thickness of the end of the nozzle
 nozzleThinning = 0.5;	//how much the outer wall of the nozzle will pull inwards
-
+numberOfOutlets = 3; //number of outlets for nConnector
 
 module connector(l=length){
 	//bottom
@@ -123,24 +123,24 @@ module tConnector(l=length){
 	}
 }
 
-module nConnector(l=length, n=number_of_outlets){
+module nConnector(di=innerDiameter, do=outerDiameter, l=length, n=numberOfOutlets, n1=nozzleThinning){
 	difference() {
 		union() {
-			sphere(d=outerDiameter*1.25);
+			rotate([0, 90, 0]) {
+				sphere(d=do*1.25);
+			}
 			for (i=[1:n]) {
 				rotate([360/n*i,0,0]) {
 					translate([0, 0, -l]) {
-						nozzle(l=l,n1=nozzleThinning,n2=0);
+						nozzle(l=l,do=do,di=di,n1=n1,n2=0);
 					}
 				}
 			}
 		}
 		for (i=[1:n]) {
 			rotate([360/n*i,180,0]) {
-				cylinder(d=innerDiameter, h=length);
+				cylinder(d=di, h=length);
 			}
-		}
-		rotate([0, -90, 0]) {
 		}
 	}
 }
@@ -149,13 +149,13 @@ module xConnector(l=length){
 	nConnector(l=l,n=4);
 }
 
-module printable(){
+module printable(do=outerDiameter){
 	difference(){
-		translate([0,0,outerDiameter/2])
+		translate([0,0,do/2])
 			rotate(90,[0,1,0])
 				children();
-		translate([-length*5,-length*5,-outerDiameter*2])
-			cube([length*10,length*10,outerDiameter*2]);
+		translate([-length*5,-length*5,-do*2])
+			cube([length*10,length*10,do*2]);
 	}
 }
 

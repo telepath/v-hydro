@@ -31,10 +31,13 @@ innerDiameter = 4;			//inner diameter of nozzle
 minWallThickness = 0.8;		//minimum thickness of nozzle end
 bottomNozzleThinning = 1;	//amount to taper bottom nozzle inwards
 topNozzleThinning = 1;		//amount to taper top nozzle inwards
+hoseThickness = 2;
 
 /* $fn=12; */
 
-/* nozzle(l=16,do=8,di=5,n1=0.75,n2=-1); */
+/* nozzle(l=16,do=8,di=5,n1=0.75,n2=-1);
+nozzle_cap(); */
+
 module nozzle(l=length,do=outerDiameter,di=innerDiameter,mw=minWallThickness,n1=bottomNozzleThinning,n2=topNozzleThinning){
 
 wr = do/10;
@@ -93,8 +96,26 @@ module rib(l=length/5,do=outerDiameter,di=innerDiameter,wr=0){
 module torus(ra,rb,){
 	/* echo(ra,rb); */
 	rotate_extrude(convexity = 10)
-		translate([max(ra,rb), 0, 0])
-			circle(r = min(ra,rb),$fn=8);
+		translate([ra, 0, 0])
+			circle(r=rb,$fn=8);
+}
+
+module nozzle_cap(di=outerDiameter*1.2+hoseThickness*2,do=-innerDiameter+outerDiameter*2.2+hoseThickness*2,l=length) {
+	echo(str("di=", di),str("do=", do),str("l=",l));
+	difference()
+	{
+		cylinder(d=do, h=l);
+		translate([0, 0, -1]) {
+			cylinder(d=di, h=l+2);
+		}
+		for (i=[0:1]) {
+			translate([0, 0, l]) {
+				rotate(90*i) {
+					cube(size=[do-di, do, l], center=true);
+				}
+			}
+		}
+	}
 }
 
 //nozzle();
